@@ -29,10 +29,12 @@ export class TasksComponent implements OnInit {
   }
 
   createTask(){
-    this.taskService.createTask(this.newTask).subscribe(res=>{
-      this.cleanvalue();
-      this.getTasks();
-    })
+    if(this.newTask.title !== ''){
+      this.taskService.createTask(this.newTask).subscribe(res=>{
+        this.cleanvalue();
+        this.getTasks();
+      })
+    }
   }
 
   deleteTask(id){
@@ -58,10 +60,12 @@ export class TasksComponent implements OnInit {
   }
 
   updateTask(){
+    if(this.newTask.title !== ''){
     this.taskService.updateTask(this.id,this.newTask).subscribe(res=>{
       this.cleanvalue();
       this.getTasks();
     })
+  }
   }
 
 }
